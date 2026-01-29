@@ -1,5 +1,8 @@
 FROM mcr.microsoft.com/devcontainers/python:1-3.12-bullseye as base
 
+# Remove broken Yarn APT repo to let apt update succeed
+RUN rm -f /etc/apt/sources.list.d/yarn.list
+
 RUN touch /etc/apt/sources.list.d/amd64.list
 RUN dpkg --add-architecture amd64
 
